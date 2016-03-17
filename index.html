@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
+
 <head>
     <title>Day Planner</title>
     <!-- Latest compiled and minified CSS -->
@@ -21,20 +22,22 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="assets/js/controller.js"></script>
 </head>
+
 <body>
     <div class="container-fluid">
         <div ng-controller="ScheduleController as schedule">
             <div id="header">Day Planner</div>
+
             <div class="row">
                 <div class="col-xs-1 col-md-1"></div>
                 <div class="col-xs-5 col-md-5">
                     <div id="am-head">AM</div>
                     <!-- AM -->
-                    <div ng-repeat="" class="">
+                    <div ng-repeat="(key, value) in schedule.day" class="">
                         <div class="panel day-block">
-                            <div class="number-box day shadow" id=""></div>
+                            <div class="number-box day shadow" id="{{key}}"></div>
                             <div class="text-box day">
-                                <textarea class="day-block" id="" >{{value}}</textarea>
+                                <textarea class="day-block" id="{{key}}-text" >{{value}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -42,32 +45,35 @@
                 <div class="col-xs-5 col-md-5">
                     <div id="pm-head">PM</div>
                     <!-- PM -->
-                    <div ng-repeat="" class="">
+                    <div ng-repeat="(key, value) in schedule.night" class="">
                         <div class="panel night-block">
-                            <div class="number-box night shadow" id=""></div>
+                            <div class="number-box night shadow" id="{{key}}"></div>
                             <div class="text-box night">
-                                <textarea class="night-block" id="" >{{value}}</textarea>
+                                <textarea class="night-block" id="{{key}}-text" >{{value}}</textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-1 col-md-1"></div>
             </div>
+
             <hr>
+
             <div class="col-xs-1 col-md-1"></div>
             <div class="col-xs-5 col-md-5 gult text-center">
                 <div class="btn-group">
                   <button class="btn btn-secondary btn-lg dropdown-toggle btn-warning" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Load Plan</button>
                   <div class="dropdown-menu">
-                    <div ng-repeat="">
-                        <div ng-click="">
+                    <div ng-repeat="date in schedule.dates">
+                        <div ng-click="schedule.dropboxitemselected(date)">
+                            {{date}}
                         </div>
                     </div>
                   </div>
                 </div>
             </div>
             <div class="col-xs-5 col-md-5 gult text-center">
-                <form ng-submit="" id="save-button">
+                <form ng-submit="schedule.save()" id="save-button">
                         <button type="submit" class="btn btn-lg btn-info">
                             <span class="" aria-hidden="true">Save Plan</button>
                     </div>
@@ -75,8 +81,10 @@
             </div>
             
             <div class="col-xs-1 col-md-1"></div>
+
         </div>
         <!-- End of Controller -->
     </div>
 </body>
+
 </html>
